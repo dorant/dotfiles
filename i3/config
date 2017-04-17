@@ -179,7 +179,7 @@ client.urgent           #002b36  #dc322f     #fdf6e3  #002b36
 focus_follows_mouse no
 hide_edge_borders vertical
 
-bindsym mod1+Control+l exec ~/.config/i3/i3lock-fancy-multimonitor/lock	
+bindsym mod1+Control+l exec ~/.config/i3/i3lock-fancy-multimonitor_UPDATED/lock	
 
 exec --no-startup-id nm-applet
 exec_always --no-startup-id feh --bg-fill ~/Pictures/TCP118v1_by_Tiziano_Consonni.jpg
