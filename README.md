@@ -1,8 +1,10 @@
 # dotfiles
-My dotfilesa
+My dotfiles
 
+## Icon fonts
+* http://fontawesome.io/cheatsheet/
 
-##Install
+## Install
 * playerctl
 ```
   https://github.com/acrisci/playerctl/releases
