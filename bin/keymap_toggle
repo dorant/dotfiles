@@ -1,0 +1,16 @@
+#!/bin/bash
+
+CURRENT=`setxkbmap -query | awk '
+    BEGIN{layout=""}
+    /^layout/{layout=$2}
+    END{printf("%s",layout)}'`
+echo $CURRENT
+
+if [ "$CURRENT" == "us" ]
+then
+    setxkbmap se
+    echo "Keymap set to Swedish"
+else
+    setxkbmap us
+    echo "Keymap set to English"
+fi
