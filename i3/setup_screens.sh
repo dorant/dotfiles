@@ -8,7 +8,7 @@ PRESENTATION="HDMI1"
 
 if (xrandr | grep "$EXT1 connected"); then
     xrandr --output $PRESENTATION --off
-    xrandr --output $PRIMARY --primary --auto --output $EXT1 --auto --above $PRIMARY --output $EXT2 --auto --right-of $EXT1
+    xrandr --output $PRIMARY --primary --auto --output $EXT2 --auto --above $PRIMARY --output $EXT1 --auto --right-of $EXT2
     echo "second screen enabled"
 elif (xrandr | grep "$PRESENTATION connected"); then
     xrandr --output $EXT1 --off

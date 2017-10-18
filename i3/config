@@ -2,12 +2,8 @@
 # i3 config file (v4)
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
 
-
-
 set $mod Mod4
 set $main_window eDP1
-
-
 
 
 # Font for window titles. Will also be used by the bar unless a different font
@@ -32,7 +28,6 @@ bindsym $mod+Shift+q kill
 #bindsym $mod+d exec dmenu_run
 bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
 #bindsym $mod+d exec rofi -show run -lines 3 -eh 2 -width 100 -padding "425" -opacity "85" -bw 0 -bc "#2f343f" -bg "#2f343f" -fg "#f3f4f5" -hlbg "#2f343f" -hlfg "#9575cd" -font "System San Francisco Display 18"
-
 
 # change focus
 bindsym $mod+j focus left
@@ -84,18 +79,17 @@ bindsym $mod+a focus parent
 # focus the child container
 #bindsym $mod+d focus child
 
-set $ws1 "1: "
-set $ws2 "2: Citrix "
-set $ws3 "3: Chrome "
-set $ws4 "4: Pidgin "
-set $ws5 "5:"
+set $ws1 "1: Emacs "
+set $ws2 "2: Chrome "
+set $ws3 "3: Pidgin "
+set $ws4 "4: >"
 
 # switch to workspace
 bindsym $mod+1 workspace $ws1
 bindsym $mod+2 workspace $ws2
 bindsym $mod+3 workspace $ws3
 bindsym $mod+4 workspace $ws4
-bindsym $mod+5 workspace $ws5
+bindsym $mod+5 workspace 5
 bindsym $mod+6 workspace 6
 bindsym $mod+7 workspace 7
 bindsym $mod+8 workspace 8
@@ -107,16 +101,12 @@ bindsym $mod+Shift+1 move container to workspace $ws1
 bindsym $mod+Shift+2 move container to workspace $ws2
 bindsym $mod+Shift+3 move container to workspace $ws3
 bindsym $mod+Shift+4 move container to workspace $ws4
-bindsym $mod+Shift+5 move container to workspace $ws5
+bindsym $mod+Shift+5 move container to workspace 5
 bindsym $mod+Shift+6 move container to workspace 6
 bindsym $mod+Shift+7 move container to workspace 7
 bindsym $mod+Shift+8 move container to workspace 8
 bindsym $mod+Shift+9 move container to workspace 9
 bindsym $mod+Shift+0 move container to workspace 10
-
-assign [class="Nxplayer.bin"] $ws2
-assign [class="Google-chrome"] $ws3
-assign [class="Pidgin"] $ws4
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -195,7 +185,7 @@ focus_follows_mouse no
 hide_edge_borders vertical
 #workspace_auto_back_and_forth yes
 
-bindsym mod1+Control+l exec ~/.config/i3/i3lock-fancy-multimonitor_UPDATED/lock	
+bindsym mod1+Control+l exec ~/.config/i3/i3lock-fancy-multimonitor_UPDATED/lock
 
 # Move page/workspace to other screen
 bindsym $mod+Control+Left move workspace to output left
@@ -206,17 +196,20 @@ bindsym $mod+Control+Down move workspace  to output down
 bindsym $mod+m exec touchpad_toggle
 bindsym $mod+l exec keymap_toggle
 
-exec --no-startup-id nm-applet
-
 # Startup desktop apps
+assign [class="Google-chrome"] $ws2
+assign [class="Pidgin"] $ws3
+
+exec --no-startup-id emacs
 exec --no-startup-id google-chrome
-exec_always --no-startup-id pidgin
-#exec --no-startup-id nx
+exec --no-startup-id pidgin
+exec --no-startup-id i3-msg 'workspace$ws4; exec i3-sensible-terminal; workspace$ws1'
+
+exec --no-startup-id nm-applet
 exec --no-startup-id "xautolock -time 10 -locker '~/.config/i3/i3lock-fancy-multimonitor_UPDATED/lock'"
-exec --no-startup-id "setxkbmap -layout us,se"
+exec --no-startup-id "setxkbmap -layout us"
 
 # Screen and visual setups
 exec_always --no-startup-id ~/.config/i3/setup_screens.sh
 exec_always --no-startup-id feh --bg-fill ~/Pictures/TCP118v1_by_Tiziano_Consonni.jpg
 exec_always compton --config ~/.config/compton.conf
-
