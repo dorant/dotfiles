@@ -5,6 +5,9 @@ git config user.email "xxxx@gmail.com"
 
 ## Icon fonts
 * http://fontawesome.io/cheatsheet/
+* Install:
+  sudo apt install fonts-font-awesome
+
 
 ## Install
 * playerctl
@@ -21,7 +24,22 @@ git config user.email "xxxx@gmail.com"
 * https://github.com/vivien/i3blocks
 
 
-## Other
+## ZSH
+* Use zsh as default shell
+  Add to .bashrc:
+  # Launch Zsh
+  if [ -t 1 ]; then
+  exec zsh
+  fi
+
+* Setup oh-my-zsh:
+  https://github.com/robbyrussell/oh-my-zsh
+
+  > vi .zshrc
+  ZSH_THEME="agnoster"
+
+
+## Other - OLD
 
 * Powerline for bash
 pip install --user powerline-status
@@ -40,18 +58,3 @@ $ wget https://github.com/Lokaltog/powerline/raw/develop/font/PowerlineSymbols.o
 $ sudo mv PowerlineSymbols.otf /usr/share/fonts/
 $ sudo fc-cache -vf
 $ sudo mv 10-powerline-symbols.conf /etc/fonts/conf.d/
-
-
-* Use zsh as default shell
-  Add to .bashrc:
-  # Launch Zsh
-  if [ -t 1 ]; then
-  exec zsh
-  fi  
-
-Use:
-  https://github.com/robbyrussell/oh-my-zsh
-
-> vi .zshrc 
-
-ZSH_THEME="agnoster"
