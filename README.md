@@ -1,6 +1,8 @@
 # dotfiles
 My dotfiles
 
+git config user.email "xxxx@gmail.com"
+
 ## Icon fonts
 * http://fontawesome.io/cheatsheet/
 
@@ -18,3 +20,38 @@ My dotfiles
 * http://fontawesome.io/icons/
 * https://github.com/vivien/i3blocks
 
+
+## Other
+
+* Powerline for bash
+pip install --user powerline-status
+
+See: https://powerline.readthedocs.io/en/latest/usage/shell-prompts.html
+'''
+powerline-daemon -q
+POWERLINE_BASH_CONTINUATION=1
+POWERLINE_BASH_SELECT=1
+. {repository_root}/powerline/bindings/bash/powerline.sh
+'''
+
+Install the Powerline patched fonts:
+
+$ wget https://github.com/Lokaltog/powerline/raw/develop/font/PowerlineSymbols.otf https://github.com/Lokaltog/powerline/raw/develop/font/10-powerline-symbols.conf
+$ sudo mv PowerlineSymbols.otf /usr/share/fonts/
+$ sudo fc-cache -vf
+$ sudo mv 10-powerline-symbols.conf /etc/fonts/conf.d/
+
+
+* Use zsh as default shell
+  Add to .bashrc:
+  # Launch Zsh
+  if [ -t 1 ]; then
+  exec zsh
+  fi  
+
+Use:
+  https://github.com/robbyrussell/oh-my-zsh
+
+> vi .zshrc 
+
+ZSH_THEME="agnoster"

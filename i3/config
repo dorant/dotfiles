@@ -196,17 +196,23 @@ bindsym $mod+Control+Down move workspace  to output down
 bindsym $mod+m exec touchpad_toggle
 bindsym $mod+l exec keymap_toggle
 
+for_window [title="xzoom 2"] floating enable
+
 # Startup desktop apps
+# Run: xprop and click window
+# Check for: WM_CLASS(STRING) = "<INSTANCE>", "<CLASS>"
 assign [class="Google-chrome"] $ws2
 assign [class="Pidgin"] $ws3
+assign [class="Hexchat"] $ws3
 
-exec --no-startup-id emacs
+exec --no-startup-id bash -c emacs
 exec --no-startup-id google-chrome
 exec --no-startup-id pidgin
+#exec --no-startup-id hexchat
 exec --no-startup-id i3-msg 'workspace$ws4; exec i3-sensible-terminal; workspace$ws1'
 
 exec --no-startup-id nm-applet
-exec --no-startup-id "xautolock -time 10 -locker '~/.config/i3/i3lock-fancy-multimonitor_UPDATED/lock'"
+exec --no-startup-id "xautolock -time 5 -locker '~/.config/i3/i3lock-fancy-multimonitor_UPDATED/lock'"
 exec --no-startup-id "setxkbmap -layout us"
 
 # Screen and visual setups
