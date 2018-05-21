@@ -1,8 +1,9 @@
 #!/bin/bash
 
-NAME="DLL060A:00 06CB:2734"
+NAME="Synaptics s3203"
 
-ID=`xinput list | grep -Eo "$NAME\s*id\=[0-9]{1,2}" | grep -Eo 'id=[0-9]{1,2}' | grep -Eo '[0-9]{1,2}'`
+ID=`xinput list | grep -E "$NAME\s+id\=[0-9]{1,2}"| grep -Eo 'id=[0-9]{1,2}'| grep -Eo '[0-9]{1,2}'`
+#echo "ID=$ID"
 
 declare -i STATE
 STATE=`xinput list-props $ID|grep 'Device Enabled'|awk '{print $4}'`

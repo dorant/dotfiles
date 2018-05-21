@@ -3,43 +3,69 @@ My dotfiles
 
 git config user.email "xxxx@gmail.com"
 
-## Icon fonts
-* http://fontawesome.io/cheatsheet/
-* Install:
-  sudo apt install fonts-font-awesome
+sudo apt-get install compton
+sudo apt install fonts-font-awesome
+sudo apt install i3blocks
+sudo apt install scrot
+sudo apt install feh
+sudo apt install xautolock
+sudo apt-get install xbacklight
+
+ln -s ~/git/dotfiles/i3 ~/.config/i3
+ln -s ~/git/dotfiles/bin/keymap_toggle ~/bin/
+ln -s ~/git/dotfiles/bin/touchpad_toggle ~/bin/
+ln -s ~/git/dotfiles/compton.conf ~/.config/
 
 
-## Install
-* playerctl
-```
-  https://github.com/acrisci/playerctl/releases
-  sudo dpkg -i ~/Downloads/playerctl-0.5.0_amd64.deb 
-```
-* xbacklight
-```
-  sudo apt-get install xbacklight
-```
+# Set i3 as default:
+  - sudo vi /etc/lightdm/lightdm.conf
+    Change user-session=ubuntu to
+           user-session=i3
 
-* http://fontawesome.io/icons/
-* https://github.com/vivien/i3blocks
+  - The different and specific config exists at:
+    /usr/share/xsessions/i3.desktop
+
+# Add nicer font
+cd /usr/share/fonts
+sudo mkdir tmp
+cd tmp
+sudo git clone https://github.com/AppleDesignResources/SanFranciscoFont
+cd SanFranciscoFont
+sudo mv *.otf ../../opentype
+sudo fc-cache -fv
+sudo rm /usr/share/fonts/tmp
+
+# Playerctl - control media players
+https://github.com/acrisci/playerctl/releases
+sudo dpkg -i ~/Downloads/playerctl-0.5.0_amd64.deb
+
+# Control sound:
+sudo apt install pavucontrol
 
 
-## ZSH
+# ZSH
+sudo apt install zsh
+
+sudo apt-get install fonts-powerline
+sudo fc-cache -vf
+
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+
 * Use zsh as default shell
   Add to .bashrc:
-  # Launch Zsh
-  if [ -t 1 ]; then
-  exec zsh
-  fi
 
-* Setup oh-my-zsh:
+## Launch Zsh
+if [ -t 1 ]; then
+  exec zsh
+fi
+
+* More about setup oh-my-zsh:
   https://github.com/robbyrussell/oh-my-zsh
 
-  > vi .zshrc
+  > vi .zshrc   and change them to:
   ZSH_THEME="agnoster"
 
-
-## Other - OLD
+# Other - OLD
 
 * Powerline for bash
 pip install --user powerline-status
