@@ -185,16 +185,22 @@ focus_follows_mouse no
 hide_edge_borders vertical
 #workspace_auto_back_and_forth yes
 
+# Define some tools that can be bound to keys
+set $setup_background feh --bg-fill ~/Pictures/TCP118v1_by_Tiziano_Consonni.jpg
+set $setup_screens    ~/.config/i3/setup_screens.sh
+
+
 bindsym mod1+Control+l exec ~/.config/i3/i3lock-fancy-multimonitor_UPDATED/lock
 
 # Move page/workspace to other screen
-bindsym $mod+Control+Left move workspace to output left
+bindsym $mod+Control+Left  move workspace to output left
 bindsym $mod+Control+Right move workspace to output right
-bindsym $mod+Control+Up move workspace to output up
-bindsym $mod+Control+Down move workspace  to output down
+bindsym $mod+Control+Up    move workspace to output up
+bindsym $mod+Control+Down  move workspace to output down
 
 bindsym $mod+m exec touchpad_toggle
 bindsym $mod+l exec keymap_toggle
+bindsym $mod+p exec $setup_screens toggle && $setup_background
 
 for_window [title="xzoom 2"] floating enable
 
@@ -216,6 +222,6 @@ exec --no-startup-id "xautolock -time 5 -locker '~/.config/i3/i3lock-fancy-multi
 exec --no-startup-id "setxkbmap -layout us"
 
 # Screen and visual setups
-exec_always --no-startup-id ~/.config/i3/setup_screens.sh
-exec_always --no-startup-id feh --bg-fill ~/Pictures/TCP118v1_by_Tiziano_Consonni.jpg
+exec_always --no-startup-id $setup_screens
+exec_always --no-startup-id $setup_background
 exec_always compton --config ~/.config/compton.conf
