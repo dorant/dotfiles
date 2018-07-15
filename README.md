@@ -3,13 +3,7 @@ My dotfiles
 
 git config user.email "xxxx@gmail.com"
 
-sudo apt-get install compton
-sudo apt install fonts-font-awesome
-sudo apt install i3blocks
-sudo apt install scrot
-sudo apt install feh
-sudo apt install xautolock
-sudo apt-get install xbacklight
+sudo apt install -y git i3 compton fonts-font-awesome i3blocks scrot feh xautolock xbacklight
 
 ln -s ~/git/dotfiles/i3 ~/.config/i3
 ln -s ~/git/dotfiles/bin/keymap_toggle ~/bin/
@@ -17,7 +11,7 @@ ln -s ~/git/dotfiles/bin/touchpad_toggle ~/bin/
 ln -s ~/git/dotfiles/compton.conf ~/.config/
 
 
-# Set i3 as default:
+## Set i3 as default:
   - sudo vi /etc/lightdm/lightdm.conf
     Change user-session=ubuntu to
            user-session=i3
@@ -25,7 +19,7 @@ ln -s ~/git/dotfiles/compton.conf ~/.config/
   - The different and specific config exists at:
     /usr/share/xsessions/i3.desktop
 
-# Add nicer font
+## Add nicer font
 cd /usr/share/fonts
 sudo mkdir tmp
 cd tmp
@@ -35,15 +29,15 @@ sudo mv *.otf ../../opentype
 sudo fc-cache -fv
 sudo rm /usr/share/fonts/tmp
 
-# Playerctl - control media players
-https://github.com/acrisci/playerctl/releases
+## Playerctl - control media players, see: https://github.com/acrisci/playerctl/releases
+wget https://github.com/acrisci/playerctl/releases/download/v0.6.1/playerctl-0.6.1_amd64.deb
 sudo dpkg -i ~/Downloads/playerctl-0.5.0_amd64.deb
 
-# Control sound:
+## Control sound:
 sudo apt install pavucontrol
 
 
-# ZSH
+## ZSH
 sudo apt install zsh
 
 sudo apt-get install fonts-powerline
@@ -54,7 +48,7 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/mas
 * Use zsh as default shell
   Add to .bashrc:
 
-## Launch Zsh
+### Launch Zsh
 if [ -t 1 ]; then
   exec zsh
 fi
@@ -64,6 +58,45 @@ fi
 
   > vi .zshrc   and change them to:
   ZSH_THEME="agnoster"
+
+
+## Terminal colors
+> git clone https://github.com/Anthony25/gnome-terminal-colors-solarized.git
+> cd gnome-terminal-colors-solarized
+> ./install.sh
+Select: dark
+
+> vi ~/.zshrc
+Add:
+eval `dircolors ~/.dir_colors`
+
+
+## Emacs
+sudo add-apt-repository ppa:kelleyk/emacs
+sudo apt install emacs26
+
+## Linux brew
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install.sh)"
+test -d ~/.linuxbrew && PATH="$HOME/.linuxbrew/bin:$HOME/.linuxbrew/sbin:$PATH"
+test -d /home/linuxbrew/.linuxbrew && PATH="/home/linuxbrew/.linuxbrew/bin:/home/linuxbrew/.linuxbrew/sbin:$PATH"
+test -r ~/.bash_profile && echo "export PATH='$(brew --prefix)/bin:$(brew --prefix)/sbin'":'"$PATH"' >>~/.bash_profile
+echo "export PATH='$(brew --prefix)/bin:$(brew --prefix)/sbin'":'"$PATH"' >>~/.profile
+
+### Brew bottles
+brew install go
+
+## Docker
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+sudo add-apt-repository \
+   "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
+   $(lsb_release -cs) \
+   stable"
+sudo apt-key update && sudo apt-get update
+sudo apt install docker-ce
+
+### Post-installs
+Manage Docker as non-root
+> sudo usermod -aG docker $USER
 
 # Other - OLD
 
