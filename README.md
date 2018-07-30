@@ -84,6 +84,9 @@ echo "export PATH='$(brew --prefix)/bin:$(brew --prefix)/sbin'":'"$PATH"' >>~/.p
 
 ### Brew bottles
 brew install go
+brew install erlang
+brew install cmake
+brew install ninja
 
 ## Docker
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
@@ -101,3 +104,6 @@ Manage Docker as non-root
 ## Other
 Chrome bookmarks:
 ~/.config/google-chrome/Default/Bookmarks
+
+### Install
+sudo apt install arandr

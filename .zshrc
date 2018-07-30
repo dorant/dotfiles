@@ -98,6 +98,9 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
+# Dont share the history between terminals
+unsetopt share_history
+
 source $HOME/.aliases
 
 fpath=(~/.zsh/completion $fpath)

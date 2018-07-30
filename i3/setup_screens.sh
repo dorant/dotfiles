@@ -1,10 +1,10 @@
 #!/bin/bash -e
 
-PRIMARY="eDP1"
-EXT1="DP1"
+PRIMARY="eDP-1"
+EXT1="DP-1"
 EXT2="DVI-I-1-1"
 
-PRESENTATION="HDMI1"
+PRESENTATION="HDMI-1"
 
 # Arguments:
 #   toggle: toggle-once positions of screens, mirror or above
