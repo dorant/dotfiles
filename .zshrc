@@ -65,6 +65,8 @@ plugins=(
     git
     kubectl
     docker
+    aws
+    minikube
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -109,3 +111,8 @@ eval `dircolors ~/.dir_colors`
 
 export GOPATH="$HOME/go"
 export PATH="$PATH:$GOPATH/bin"
+
+autoload -U +X bashcompinit && bashcompinit
+complete -o nospace -C /home/qbjsven/go/bin/terraform terraform
+
+source /usr/share/google-cloud-sdk/completion.zsh.inc
