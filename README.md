@@ -2,6 +2,7 @@
 My dotfiles
 
 git config user.email "xxxx@gmail.com"
+git config --global pager.branch false
 
 sudo apt install -y git i3 compton fonts-font-awesome i3blocks scrot feh xautolock xbacklight
 

@@ -110,7 +110,8 @@ fpath=(~/.zsh/completion $fpath)
 eval `dircolors ~/.dir_colors`
 
 export GOPATH="$HOME/go"
-export PATH="$PATH:$GOPATH/bin"
+export PATH="$PATH:$HOME/.cargo/bin:$GOPATH/bin"
+export RUST_SRC_PATH=$(rustc --print sysroot)/lib/rustlib/src/rust/src
 
 autoload -U +X bashcompinit && bashcompinit
 complete -o nospace -C /home/qbjsven/go/bin/terraform terraform
