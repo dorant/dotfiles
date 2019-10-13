@@ -225,3 +225,8 @@ exec --no-startup-id "setxkbmap -layout us"
 exec_always --no-startup-id $setup_screens
 exec_always --no-startup-id $setup_background
 exec_always compton --config ~/.config/compton.conf
+
+# Enable tap-to-click on mouse
+exec_always --no-startup-id /usr/bin/xinput set-prop "Synaptics s3203" "libinput Tapping Enabled" 1
+# Enable natural scrolling (Mac way..)
+exec_always --no-startup-id /usr/bin/xinput set-prop "Synaptics s3203" "libinput Natural Scrolling Enabled" 1

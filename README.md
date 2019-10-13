@@ -1,6 +1,7 @@
 # dotfiles
-My dotfiles, config this repo:
+dotfiles and configs to set
 
+## Set git config for this repo:
 `git config user.email "xxxx@gmail.com"`
 
 
@@ -11,12 +12,18 @@ git config --global pager.branch false
 
 ### Setup i3:
 ```
+sudo apt update
 sudo apt install -y git i3 compton fonts-font-awesome i3blocks scrot feh xautolock xbacklight
 
 ln -s ~/git/dotfiles/i3 ~/.config/i3
 ln -s ~/git/dotfiles/bin/keymap_toggle ~/bin/
 ln -s ~/git/dotfiles/bin/touchpad_toggle ~/bin/
 ln -s ~/git/dotfiles/compton.conf ~/.config/
+
+Make sure following commands are executable:
+chmod +x ~/git/dotfiles/i3/i3lock-fancy-multimonitor_UPDATED/lock
+chmod +x ~/git/dotfiles/bin/keymap_toggle
+chmod +x ~/git/dotfiles/bin/touchpad_toggle
 ```
 
 ### Set i3 as default:
@@ -53,7 +60,6 @@ sudo apt install pavucontrol
 ```
 
 ### ZSH
-
 ```
 sudo apt install zsh
 
@@ -65,20 +71,33 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/mas
 
 # Use zsh as default shell
 # Add to .bashrc:
+```
 
 ### Launch Zsh
+```
 if [ -t 1 ]; then
   exec zsh
 fi
+```
 
-# More about setup oh-my-zsh:
+### More about setup oh-my-zsh:
 https://github.com/robbyrussell/oh-my-zsh
-
+```
   > vi .zshrc   and change them to:
   ZSH_THEME="agnoster"
+```
 
+### Change prompt
+Edit ~/.oh-my-zsh/themes/agnoster.zsh-theme
+```
+prompt_dir() {
+#  prompt_segment blue $CURRENT_FG '%~'
+  prompt_segment blue $CURRENT_FG '%2~'
+}
+```
 
-## Terminal colors
+### Terminal colors
+```
 > git clone https://github.com/Anthony25/gnome-terminal-colors-solarized.git
 > cd gnome-terminal-colors-solarized
 > ./install.sh
@@ -89,7 +108,6 @@ Add:
 eval `dircolors ~/.dir_colors`
 
 ```
-
 
 ### Install Linux brew
 ```
@@ -116,8 +134,17 @@ sudo usermod -aG docker $USER
 
 ### Post-installs
 ```
+sudo apt install snapd
+
 # Emacs
 sudo snap install emacs --classic
+
+sudo snap install helm --classic
+sudo snap install kubectl --classic
+sudo snap install shellcheck
+
+# Rust
+curl https://sh.rustup.rs -sSf | sh
 
 # Brew bottles
 brew install go
@@ -126,9 +153,20 @@ brew install cmake
 brew install ninja
 
 sudo apt install arandr
+
+# Install Chrome
+wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+sudo dpkg -i google-chrome-stable_current_amd64.deb
 ```
 
 ### Other
-Chrome bookmarks:
-~/.config/google-chrome/Default/Bookmarks
 
+#### Chrome bookmarks:
+`~/.config/google-chrome/Default/Bookmarks`
+
+#### Setup mouse pointer icon for Google/Firefox..
+`cp -r /usr/share/icons/DMZ-Black/* ~/.local/share/icons/default/`
+
+#### Setup Wifi
+
+#### Manually/Graphically setup languages
