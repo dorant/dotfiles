@@ -159,6 +159,19 @@ wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
 sudo dpkg -i google-chrome-stable_current_amd64.deb
 ```
 
+```
+curl https://raw.githubusercontent.com/ahmetb/kubectx/master/kubectx -o ~/bin/kubectx
+chmod +x ~/bin/kubectx
+curl https://raw.githubusercontent.com/ahmetb/kubectx/master/kubens -o ~/bin/kubens
+chmod +x ~/bin/kubens
+
+mkdir -p ~/.oh-my-zsh/completions
+chmod -R 755 ~/.oh-my-zsh/completions
+ln -s /opt/kubectx/completion/kubectx.zsh ~/.oh-my-zsh/completions/_kubectx.zsh
+ln -s /opt/kubectx/completion/kubens.zsh ~/.oh-my-zsh/completions/_kubens.zsh
+```
+
+
 ### Other
 
 #### Chrome bookmarks:

@@ -80,7 +80,7 @@ bindsym $mod+a focus parent
 
 set $ws1 "1: Emacs "
 set $ws2 "2: Chrome "
-set $ws3 "3: Pidgin "
+set $ws3 "3: Teams "
 set $ws4 "4: >"
 
 # switch to workspace
@@ -185,10 +185,10 @@ hide_edge_borders vertical
 #workspace_auto_back_and_forth yes
 
 # Define some tools that can be bound to keys
-set $setup_background feh --bg-fill ~/.config/i3/TCP118v1_by_Tiziano_Consonni.jpg
 set $setup_screens    ~/.config/i3/setup_screens.sh
+set $setup_background feh --bg-fill ~/.config/i3/TCP118v1_by_Tiziano_Consonni.jpg
 
-
+# Lock screen
 bindsym mod1+Control+l exec ~/.config/i3/i3lock-fancy-multimonitor_UPDATED/lock
 
 # Move page/workspace to other screen
@@ -209,10 +209,13 @@ for_window [title="xzoom 2"] floating enable
 assign [class="Google-chrome"] $ws2
 assign [class="Pidgin"] $ws3
 assign [class="Hexchat"] $ws3
+assign [class="teams-for-linux"] $ws3
 
-exec --no-startup-id bash -c emacs
+#exec --no-startup-id bash -c emacs
+exec --no-startup-id i3-msg 'workspace$ws1; exec i3-sensible-terminal'
 exec --no-startup-id google-chrome
-exec --no-startup-id pidgin
+exec --no-startup-id teams-for-linux
+#exec --no-startup-id pidgin
 #exec --no-startup-id hexchat
 exec --no-startup-id i3-msg 'workspace$ws4; exec i3-sensible-terminal; workspace$ws1'
 
