@@ -9,8 +9,8 @@ echo $CURRENT
 if [ "$CURRENT" == "us" ]
 then
     setxkbmap se
-    echo "Keymap set to Swedish"
+    notify-send -u low "Keymap set to: Swedish"
 else
     setxkbmap us
-    echo "Keymap set to English"
+    notify-send -u low "Keymap set to: English"
 fi

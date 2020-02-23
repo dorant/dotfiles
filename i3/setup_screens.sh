@@ -1,41 +1,47 @@
 #!/bin/bash -e
 
-PRIMARY="eDP-1"
-EXT1="DP-1"
-EXT2="DVI-I-1-1"
+# Screen devices
+LAPTOP="eDP-1" # Intel
+# LAPTOP="eDP-1-1" # Nvidia
+HDMI="DP-3"
+USBC="DP-1-1"
 
-PRESENTATION="HDMI-1"
+# Which device to use
+PRIMARY=$LAPTOP
+EXTRA=$HDMI
+PRESENTATION=$USBC
+
+# Configs
+PRESENTATION_SIZE="1920x1080"
 
 # Arguments:
-#   toggle: toggle-once positions of screens, mirror or above
+#   mirror: toggle-once positions of screens, mirror or above
 PRESENTATION_POSITION="--same-as"
-EXT1_POSITION="--above"
-if [ "$1" == "toggle" ]; then
+EXTRA_POSITION="--above"
+if [ "$1" == "mirror" ]; then
+    notify-send -u low "Screen mirror"
     PRESENTATION_POSITION="--above"
-    EXT1_POSITION="--same-as"
+    EXTRA_POSITION="--same-as"
 fi
 
 if (xrandr | grep "$PRESENTATION connected"); then
-    xrandr --output $EXT1 --off
-    xrandr --output $EXT2 --off
+    xrandr --output $EXTRA --off
     xrandr --output $PRESENTATION --auto
-    xrandr --output $PRIMARY --primary --auto --output $PRESENTATION --auto $PRESENTATION_POSITION $PRIMARY
-    echo "second screen (HDMI) enabled"
+    xrandr --output $PRIMARY --primary --auto --output $PRESENTATION --mode $PRESENTATION_SIZE $PRESENTATION_POSITION $PRIMARY
+    echo "presentation screen enabled ($PRESENTATION)"
 
-elif (xrandr | grep "$EXT1 connected"); then
+elif (xrandr | grep "$EXTRA connected"); then
     xrandr --output $PRESENTATION --off
-
-    if (xrandr | grep "$EXT2 connected"); then
-        xrandr --output $PRIMARY --primary --auto --output $EXT2 --auto --above $PRIMARY --output $EXT1 --auto --right-of $EXT2
-        echo "second screens enabled ($EXT1,$EXT2)"
-    else
-        xrandr --output $PRIMARY --primary --auto --output $EXT1 --auto $EXT1_POSITION $PRIMARY
-        echo "second screen enabled ($EXT1)"
-    fi
+    xrandr --output $PRIMARY --primary --auto --output $EXTRA --auto $EXTRA_POSITION $PRIMARY
+    echo "second screen enabled ($EXTRA)"
+    # xrandr --output $PRIMARY --primary --auto --output $USBC --auto --above $PRIMARY --output $HDMI --auto --right-of $USBC
 
 else
-    xrandr --output $EXT1 --off
-    xrandr --output $EXT2 --off
+    # Only use laptop screen
+    if [[ $(xrandr | grep "$PRIMARY connected") = "" ]]; then
+       echo "Error! Primary screen not found: $PRIMARY"
+    fi
+    xrandr --output $EXTRA --off
     xrandr --output $PRESENTATION --off
     xrandr --output $PRIMARY --primary --auto
     echo "second screen(s) disabled"
