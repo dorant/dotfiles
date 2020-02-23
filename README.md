@@ -14,6 +14,19 @@ git config --global alias.ci commit
 git config --global alias.st status
 ```
 
+### Setup configs
+```
+mkdir ~/bin
+ln -s ~/git/dotfiles/zsh/.zshrc ~/.zshrc
+ln -s ~/git/dotfiles/i3 ~/.config/i3
+ln -s ~/git/dotfiles/dunst ~/.config/dunst
+ln -s ~/git/dotfiles/rofi ~/.config/rofi
+ln -s ~/git/dotfiles/bin/keymap_toggle ~/bin/
+ln -s ~/git/dotfiles/bin/touchpad_toggle ~/bin/
+ln -s ~/git/dotfiles/compton.conf ~/.config/
+ln -s ~/git/dotfiles/pavucontrol.ini ~/.config/
+```
+
 ### Setup alias
 ```
 echo alias ec=\'emacsclient -n\' > ~/.bash_aliases
@@ -24,15 +37,6 @@ echo alias ec=\'emacsclient -n\' > ~/.bash_aliases
 sudo apt update
 sudo apt install -y git i3 compton fonts-font-awesome i3blocks scrot feh xautolock xbacklight
 sudo apt install blueman
-
-mkdir ~/bin
-ln -s ~/git/dotfiles/i3 ~/.config/i3
-ln -s ~/git/dotfiles/dunst ~/.config/dunst
-ln -s ~/git/dotfiles/rofi ~/.config/rofi
-ln -s ~/git/dotfiles/bin/keymap_toggle ~/bin/
-ln -s ~/git/dotfiles/bin/touchpad_toggle ~/bin/
-ln -s ~/git/dotfiles/compton.conf ~/.config/
-ln -s ~/git/dotfiles/pavucontrol.ini ~/.config/
 ```
 
 ### Modify i3 config
@@ -139,7 +143,14 @@ Add to ~/.zshrc
 ```
 unsetopt share_history
 ```
-#### Use zsh as default shell
+
+#### Check default shell
+
+Make sure zsh is default shell
+```
+cat /etc/passwd | grep $USER
+```
+or if /etc/passwd is controlled let it be started by bash
 Add to .bashrc:
 ```
 # Launch Zsh
