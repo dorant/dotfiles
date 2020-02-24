@@ -245,6 +245,9 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/i
 # MS Teams clone
 sudo snap install teams-for-linux
 
+# Slack
+sudo snap install --classic slack
+
 # Emacs
 sudo snap install emacs --classic
 

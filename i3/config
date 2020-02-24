@@ -225,14 +225,14 @@ exec --no-startup-id "setxkbmap -layout us"
 # Run: xprop and click window
 # Check for: WM_CLASS(STRING) = "<INSTANCE>", "<CLASS>"
 assign [class="Google-chrome"] $ws2
-assign [class="Pidgin"] $ws3
 assign [class="Hexchat"] $ws3
 assign [class="teams-for-linux"] $ws3
+assign [class="Slack"] $ws3
 
 # Start programs and shells
 exec --no-startup-id google-chrome
-#exec --no-startup-id teams-for-linux
-#exec --no-startup-id pidgin
+exec --no-startup-id slack
+exec --no-startup-id teams-for-linux
 #exec --no-startup-id hexchat
 #exec --no-startup-id bash -c emacs
 exec --no-startup-id i3-msg 'workspace$ws1; exec i3-sensible-terminal'
