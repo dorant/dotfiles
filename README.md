@@ -21,10 +21,11 @@ ln -s ~/git/dotfiles/zsh/.zshrc ~/.zshrc
 ln -s ~/git/dotfiles/i3 ~/.config/i3
 ln -s ~/git/dotfiles/dunst ~/.config/dunst
 ln -s ~/git/dotfiles/rofi ~/.config/rofi
-ln -s ~/git/dotfiles/bin/keymap_toggle ~/bin/
-ln -s ~/git/dotfiles/bin/touchpad_toggle ~/bin/
 ln -s ~/git/dotfiles/compton.conf ~/.config/
 ln -s ~/git/dotfiles/pavucontrol.ini ~/.config/
+
+ln -s ~/git/dotfiles/bin/keymap_toggle ~/bin/
+ln -s ~/git/dotfiles/bin/touchpad_toggle ~/bin/
 ```
 
 ### Setup alias
@@ -234,6 +235,19 @@ sudo curl -L "https://github.com/docker/compose/releases/download/1.25.3/docker-
 sudo chmod +x /usr/local/bin/docker-compose
 ```
 
+### Nicer less
+```
+sudo apt install source-highlight
+export LESSOPEN="| /usr/share/source-highlight/src-hilite-lesspipe.sh %s"
+export LESS=' -R '
+source-highlight-settings
+sudo mv /usr/share/source-highlight/esc.style /usr/share/source-highlight/esc.style.old
+sudo mv /usr/share/source-highlight/esc.outlang /usr/share/source-highlight/esc.outlang.old
+sudo curl https://raw.githubusercontent.com/jrunning/source-highlight-solarized/master/esc-solarized.outlang -o /usr/share/source-highlight/esc.outlang
+sudo curl https://raw.githubusercontent.com/jrunning/source-highlight-solarized/master/esc-solarized.style -o /usr/share/source-highlight/esc.style
+
+```
+
 ### Post-installs
 ```
 # Install snap
@@ -284,9 +298,11 @@ PATH="$GOPATH/bin:$PATH"
 sudo apt-get -y install autoconf m4
 sudo apt-get -y install libssl-dev
 sudo apt-get -y install libncurses5-dev
+# Enable Observer that needs wxWidgets
+sudo apt-get -y install libwxgtk3.0-dev
 
 # Tools
-sudo apt install arandr tree htop
+sudo apt install arandr tree htop jq
 
 # Other
 # brew install cmake
@@ -316,6 +332,10 @@ cd .. && rm -rf ~/tmp_helm
 
 # Install kind
 GO111MODULE="on" go get sigs.k8s.io/kind@v0.7.0
+
+# Nicer cat
+sudo apt install bat
+sudo mv /usr/bin/batcat /usr/bin/bat
 ```
 
 

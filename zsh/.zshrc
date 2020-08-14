@@ -44,12 +44,19 @@ ZSH_HIGHLIGHT_STYLES[path_prefix]=none
 
 # Go
 export GOPATH="$HOME/go"
+export PATH="$PATH:$GOPATH/bin"
 
 # Rust
-export PATH="$PATH:$HOME/.cargo/bin:$GOPATH/bin"
+export PATH="$PATH:$HOME/.cargo/bin"
 export RUST_SRC_PATH=$(rustc --print sysroot)/lib/rustlib/src/rust/src
+
+# Erlang
+. ~/erlang/22.1/activate
 
 # Aliases
 alias hist="history -t'%F %T'"
 alias history="history -t'%F %T'"
-
+alias ec="emacsclient -n"
+alias h="history"
+alias k="kubectl"
+alias images="kubectl get pods --all-namespaces -o jsonpath=\"{.items[*].spec.containers[*].image}\" | tr \" \" \"\\n\""
