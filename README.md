@@ -30,7 +30,8 @@ ln -s ~/git/dotfiles/bin/touchpad_toggle ~/bin/
 
 ### Setup alias
 ```
-echo alias ec=\'emacsclient -n\' > ~/.bash_aliases
+echo alias ec=\'emacsclient -n\' >> ~/.zshrc
+echo alias ll=\'ls -laG\' >> ~/.zshrc
 ```
 
 ### Setup i3:
