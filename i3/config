@@ -220,6 +220,9 @@ for_window [class="Pavucontrol"] floating enable
 for_window [class="Arandr"] floating enable
 for_window [class="Arandr"] resize set 800 600
 
+for_window [title="Microsoft Teams Notification" class="microsoft teams - preview"] floating enable
+for_window [title="Microsoft Teams Notification" class="Microsoft Teams - Preview"] floating enable
+
 exec --no-startup-id "setxkbmap -layout us"
 
 # Startup desktop apps
@@ -228,12 +231,14 @@ exec --no-startup-id "setxkbmap -layout us"
 assign [class="Google-chrome"] $ws2
 assign [class="Hexchat"] $ws3
 assign [class="teams-for-linux"] $ws3
+assign [class="Microsoft Teams - Preview"] $ws3
 assign [class="Slack"] $ws3
 
 # Start programs and shells
 exec --no-startup-id google-chrome
 exec --no-startup-id slack
 exec --no-startup-id teams-for-linux
+#exec --no-startup-id teams
 #exec --no-startup-id hexchat
 #exec --no-startup-id bash -c emacs
 exec --no-startup-id i3-msg 'workspace$ws1; exec i3-sensible-terminal'
@@ -242,6 +247,7 @@ exec --no-startup-id i3-msg 'workspace$ws4; exec i3-sensible-terminal; workspace
 # Menubar applet
 exec --no-startup-id nm-applet
 exec --no-startup-id blueman-applet
+exec --no-startup-id pasystray
 
 # Screen and visual setups
 exec_always $setup_screens

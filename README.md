@@ -1,9 +1,10 @@
 # dotfiles
-dotfiles and configs to set
 
-## Set git config for this repo:
-`git config user.email "xxxx@gmail.com"`
-
+### Prepare
+```
+sudo apt install git
+<Clone this repo>
+```
 
 ### Setup git
 ```
@@ -12,6 +13,9 @@ git config --global alias.co checkout
 git config --global alias.br branch
 git config --global alias.ci commit
 git config --global alias.st status
+
+## Set git config for this repo:
+git config user.email "xxxx@gmail.com"
 ```
 
 ### Setup configs
@@ -38,7 +42,8 @@ echo alias ll=\'ls -laG\' >> ~/.zshrc
 ```
 sudo apt update
 sudo apt install -y git i3 compton fonts-font-awesome i3blocks scrot feh xautolock xbacklight
-sudo apt install blueman
+sudo apt install -y blueman
+sudo apt install -y pasystray
 ```
 
 ### Modify i3 config
@@ -85,8 +90,8 @@ sudo rm -rf /usr/share/fonts/tmp
 ```
 ## Playerctl - control media players, see: https://github.com/acrisci/playerctl/releases
 cd
-wget https://github.com/altdektop/playerctl/releases/download/v2.0.2/playerctl-2.0.2_amd64.deb
-sudo dpkg -i ~/playerctl-2.0.2_amd64.deb
+wget https://github.com/altdesktop/playerctl/releases/download/v2.4.1/playerctl-2.4.1_amd64.deb
+sudo dpkg -i ~/playerctl-2.4.1_amd64.deb
 
 # Volume control
 sudo apt install pavucontrol
@@ -98,7 +103,7 @@ Make sure `dunst` is not already installed
 
 ```
 # Install deps
-sudo apt install libdbus-1-dev libx11-dev libxinerama-dev libxrandr-dev libxss-dev \
+sudo apt install build-essential libdbus-1-dev libx11-dev libxinerama-dev libxrandr-dev libxss-dev \
      libglib2.0-dev libpango1.0-dev libgtk-3-dev libxdg-basedir-dev libnotify-dev
 
 git clone https://github.com/dunst-project/dunst.git
@@ -177,6 +182,11 @@ prompt_dir() {
 }
 ```
 
+### Correcting font
+```
+gsettings set org.gnome.desktop.interface monospace-font-name 'Ubuntu Mono 13'
+```
+
 ### Install plugins
 
 zsh-autosuggestions
@@ -213,20 +223,6 @@ test -r ~/.bash_profile && echo "export PATH='$(brew --prefix)/bin:$(brew --pref
 echo "export PATH='$(brew --prefix)/bin:$(brew --prefix)/sbin'":'"$PATH"' >>~/.profile
 ```
 
-### Install Docker
-```
-curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-sudo add-apt-repository \
-   "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
-   $(lsb_release -cs) \
-   stable"
-sudo apt-key update && sudo apt-get update
-sudo apt install docker-ce
-
-# Manage Docker as non-root
-sudo usermod -aG docker $USER
-```
-
 ### Install docker-compose
 ```
 # Install docker-composer
@@ -246,19 +242,33 @@ sudo mv /usr/share/source-highlight/esc.style /usr/share/source-highlight/esc.st
 sudo mv /usr/share/source-highlight/esc.outlang /usr/share/source-highlight/esc.outlang.old
 sudo curl https://raw.githubusercontent.com/jrunning/source-highlight-solarized/master/esc-solarized.outlang -o /usr/share/source-highlight/esc.outlang
 sudo curl https://raw.githubusercontent.com/jrunning/source-highlight-solarized/master/esc-solarized.style -o /usr/share/source-highlight/esc.style
+```
 
+### Modify backlight settings
+```
+sudo su
+# Get device and set brightness using ACPI
+ls /sys/class/backlight/
+cat /sys/class/backlight/<DEV>/max_brightness
+echo <MAX BRIGHTNESS> > /sys/class/backlight/<DEV>/brightness
 ```
 
 ### Post-installs
 ```
-# Install snap
+# Install screenshot app
+sudo apt-get install gnome-screenshot
+
+# Install snap (already available in Ubuntu 20.22)
 sudo apt install snapd
 
 # Brew
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install.sh)"
 
-# MS Teams clone
-sudo snap install teams-for-linux
+# Install Teams client
+> Unofficial Microsoft Teams for Linux clien
+sudo snap install teams-for-linux)
+> or Microsoft Teams progressive web app
+https://aka.ms/get-teams-linux
 
 # Slack
 sudo snap install --classic slack
@@ -268,6 +278,9 @@ sudo snap install emacs --classic
 
 sudo snap install shellcheck
 
+# Build
+apt-get install ninja-build
+
 # Rust
 curl https://sh.rustup.rs -sSf | sh
 
@@ -276,12 +289,13 @@ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
 sudo add-apt-repository \
    "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
    $(lsb_release -cs) \
-   test"
-sudo apt-get update
-sudo apt-get install docker-ce docker-ce-cli containerd.io
-sudo docker run hello-world
+   stable"
+sudo apt-key update && sudo apt-get update
+sudo apt-get install docker-ce
 sudo groupadd docker
 sudo usermod -aG docker $USER
+<reboot>
+docker run hello-world
 
 # Go
 sudo snap install --classic go

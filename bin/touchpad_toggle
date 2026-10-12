@@ -2,7 +2,7 @@
 
 NAME=$1
 
-ID=`xinput list | grep -E "$NAME\s+id\=[0-9]{1,2}" | grep -Eo 'id=[0-9]{1,2}' | grep -Eo '[0-9]{1,2}'`
+ID=`xinput list | grep 'ouchpad' | grep -E "$NAME\s+id\=[0-9]{1,2}" | grep -Eo 'id=[0-9]{1,2}' | grep -Eo '[0-9]{1,2}'`
 #echo "ID=$ID"
 
 if [ -z $ID ]
